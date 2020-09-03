@@ -147,13 +147,13 @@ function Products_Catalogue()
         ],
     ];
 
-    function productCatalogue($arrayName)
+    function productCatalogue($arrayProducts)
     {
         $r = '';
-        foreach ($arrayName as $key => $value) {
+        foreach ($arrayProducts as $key => $value) {
             if ($value['qty_in_stock'] > 0) {
                 $r .= '<div class="product">';
-                $r .= '<img src=products_images/'.$value['pic'].'>';
+                $r .= '<img src="products_images/'.$value['pic'].'" alt="'.$value['description'].'">';
                 $r .= '<p class="name">'.$value['name'].'</p>';
                 $r .= '<p class="description">'.$value['description'].'</p>';
                 $r .= '<p class="price">'.$value['price'].'</p>';
