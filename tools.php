@@ -44,27 +44,26 @@ function array_HTML_table($arrayName)
     return $r;
 }
 
-function array_HTML_Products($arrayName)
+function array_HTML_Products($arrayProducts)
 {
     $r = '';
-
+    // $r .= '<style> td,th{
+    //     border:1px solid black;}</style>';
     $r .= '<table class="tab" >';
+    if (count($arrayProducts) == 0) {
+        return 'table is empty';
+    }
+    $col_names = array_keys($arrayProducts[0]);
     $r .= '<tr>';
-    $r .= '<th>id </th>';
-    $r .= '<th>name</th>';
-    $r .= '<th>description</th>';
-    $r .= '<th>price</th>';
-    $r .= '<th>pic</th>';
-    $r .= '<th>stock</th>';
+    foreach ($col_names as $col) {
+        $r .= '<th>'.$col.'</th>';
+    }
     $r .= '</tr>';
-    foreach ($arrayName as $key => $value) {
+    foreach ($arrayProducts as $row) {
         $r .= '<tr>';
-        $r .= '<td>'.$value['id'].'</td>';
-        $r .= '<td>'.$value['name'].'</td>';
-        $r .= '<td>'.$value['description'].'</td>';
-        $r .= '<td>'.$value['price'].'</td>';
-        $r .= '<td>'.$value['pic'].'</td>';
-        $r .= '<td>'.$value['qty_in_stock'].'</td>';
+        foreach ($col_names as $col) {
+            $r .= '<td>'.$row[$col].'</td>';
+        }
         $r .= '</tr>';
     }
     $r .= '</table>';

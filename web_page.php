@@ -22,8 +22,9 @@ class web_page
         if ($this->content == '') {
             http_response_code(500); //http response code
             // mail(ADMIN_EMAIL, 'Error in web_page.php', 'no function set in file render()'); //email
-            // die('Sorry Unable to handel request ');
+            die('Sorry Unable to handel request ');
         }
+        $this->title .= '-'.COMPANY_NAME;
         if ($this->lang == 'en-CA') {
             require_once 'template.php';
         } elseif ($this->lang == 'fr-CA') {
