@@ -1,0 +1,122 @@
+/*-------------------------INDEX PAGE STARTS----------------------------------*/
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+header {
+    background-color: #DB1D24;
+    color: white;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+}
+
+#img1 {
+    width: 13%;
+    max-width: 100%;
+    display: block;
+    margin: auto;
+    padding-right: 35px;
+}
+
+/* nav bar style */
+
+.nav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #242424;
+}
+
+.nav>li {
+    float: left;
+    width: 33.33%;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 10px 14px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+li a:hover {
+    background-color: #111;
+}
+
+.footer {
+    background-color: #f0f3f3;
+    position: relative;
+    width: 100%;
+    padding: 40px;
+    height: 250px;
+    clear: both;
+    color: #242424;
+    max-width: 100%;
+    margin: auto;
+    bottom: 0;
+}
+
+.footer-end {
+    text-align: center;
+    margin: 5px;
+}
+
+/*Custom font usage*/
+
+.footer-end, .home-content, .home-content-header, .headline, .container {
+    font-family: 'Barlow Condensed', sans-serif;
+}
+
+.container>ul {
+    margin: 10px;
+    list-style: none;
+}
+
+li strong {
+    font-size: 20px;
+}
+
+.container {
+    width: 33.33%;
+    float: left;
+}
+
+.icons {
+    float: left;
+}
+
+/* social media icons style */
+
+.fa {
+    padding: 10px 10px;
+    border-radius: 50%;
+    margin: 5px 5px;
+}
+
+.fa-youtube {
+    background: #bb0000;
+    color: white;
+}
+
+.fa-instagram {
+    background: #fb3958;
+    color: white;
+}
+
+.fa-facebook {
+    background: #3B5998;
+    color: white;
+}
+
+.fa-twitter {
+    background: #55ACEE;
+    color: white;
+}
+
+/*-------------------------INDEX PAGE ENDS----------------------------------*/
