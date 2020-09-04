@@ -65,9 +65,9 @@ class registration
                 <label class="form-check-label" for="address">Postal Code (Optional)</label>
                 <input type="text" name="postal_code" maxlength="7"  placeholder="eg. A1A-1A1" class="form-control" value="{$prev_val['postal_code']}"><br>
                 <legend>Language</legend>
-                <input type="radio" name=lang value=en  > English<br>
-                <input type="radio" name=lang value=fr checked > French<br>
-                <input type="radio" name=lang value=Other  > Other <input name='other_lang' type="text" maxlength="25" value="{$prev_val['other_lang']}">
+                <input type="radio" name="lang" value="en"  > English<br>
+                <input type="radio" name="lang" value="fr" checked > French<br>
+                <input type="radio" name="lang" value="Other"  > Other <input name='other_lang' type="text" maxlength="25" value="{$prev_val['other_lang']}">
                 <legend>Connection Info (Requried)</legend>
                 <input class="form-control" type="email" name="email" requried maxlength="126" size="25" placeholder="Email" value="{$prev_val['email']}" ><br>
                 <input class="form-control" type="password" name="pw" requried maxlength="8"  placeholder="Password - must be (8 Char)" value="{$prev_val['pw']}"><br>
