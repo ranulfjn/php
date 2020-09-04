@@ -48,3 +48,7 @@ td, th {
 p {
     font-size: 15px;
 }
+
+form {
+    margin: 50px;
+}
