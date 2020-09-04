@@ -6,6 +6,7 @@ require_once 'web_page.php';
 require_once 'tools.php';
 require_once 'products.php';
 require_once 'users.php';
+require_once 'registration.php';
 
 if (isset($_GET['op'])) {
     $op = $_GET['op'];
@@ -19,6 +20,12 @@ switch ($op) {
     case 2:
             $userObj = new users();
             $userObj->loginPageValidation(); break;
+
+    case 3:  $registration = new registration();
+             $registration->RegisterFormDisplay(); break;
+
+    case 4:  $registration = new registration();
+            $registration->RegisterFormVerify(); break;
     case 50: dispalyServerErrorLogs(); break;
     case 100:
             $producjObj = new products();

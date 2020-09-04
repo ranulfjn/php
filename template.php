@@ -42,6 +42,7 @@
             <li><a class="navdata" href="index.php?op=111">Product Catalogue</a></li>
             <li><a class="navdata" href="index.php?op=50">Error Logs</a></li>
             <li><a class="navdata" href="index.php?op=1">Login</a></li>
+            <li><a class="navdata" href="index.php?op=3">Registration</a></li>
         </ul>
     </nav>
     <main>

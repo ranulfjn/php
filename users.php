@@ -78,31 +78,7 @@ class users
             $this->loginPage('Email or password doesnt not match, Try again!!!!!!', $_POST);
             //    HTML;
         }
+
+       
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
 }
