@@ -20,9 +20,9 @@ class web_page
     public function render()
     {
         if ($this->content == '') {
-            http_response_code(500); //http response code
-            // mail(ADMIN_EMAIL, 'Error in web_page.php', 'no function set in file render()'); //email
-            die('Sorry Unable to handel request ');
+            crash(500, 'Error in web_page.php-no function is set in file render()');
+            // mail(ADMIN_EMAIL, 'Error in web_page.php. ', 'no function set in file render()'); //email
+        //     die('Sorry Unable to handel request ');
         }
         $this->title .= '-'.COMPANY_NAME;
         if ($this->lang == 'en-CA') {
@@ -30,7 +30,8 @@ class web_page
         } elseif ($this->lang == 'fr-CA') {
             require_once 'template_fr.php';
         } else {
-            die('Language not supported');
+            crash(400, 'Language not supported');
         }
+        die();
     }
 }

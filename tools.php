@@ -70,3 +70,14 @@ function array_HTML_Products($arrayProducts)
 
     return $r;
 }
+
+function crash($code, $message)
+{
+    http_response_code($code);
+    // mail(ADMIN_EMAIL, COMPANY_NAME.'Server crash code='.$code, $message);
+    $file = fopen('logs/errors.log', 'a+');
+    $time_info = date('d-M-Y H:i:s');
+    fwrite($file, $message.' : '.$time_info.'<br>');
+    fclose($file);
+    die($message);
+}
