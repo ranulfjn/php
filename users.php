@@ -15,12 +15,12 @@ class users
         $loginPage = new web_page();
         $loginPage->title = 'Login Page';
         $loginPage->content = <<< HTML
-        <div style="color:red">{$err_msg}</div>
-        <form action="index.php?op=2" method="POST">
+        <div class="alert alert-danger">{$err_msg}</div>
+        <form action="index.php?op=2" method="POST" style='width:300px'>
             <!-- <input type="hidden" name="op" value="2"> -->
-            <input type="email" name="email" requried maxlength="126" size="25" placeholder="Email" value="{$prev_val['email']}"><br>
-            <input type="password" name="pw" requried maxlength="8"  placeholder="Password (8 Char)" value="{$prev_val['pw']}"><br>
-            <input type="submit" value='Continue' class="btn btn-primary>
+            <input class="form-control" type="email" name="email" requried maxlength="126" size="25" placeholder="Email" value="{$prev_val['email']}"><br>
+            <input class="form-control" type="password" name="pw" requried maxlength="8"  placeholder="Password (8 Char)" value="{$prev_val['pw']}"><br>
+            <input class="btn btn-primary" type="submit" value='Continue' >
         </form>
     HTML;
         $loginPage->render();
