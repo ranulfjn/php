@@ -57,7 +57,7 @@ class registration
             <input type="text" name="fullname" maxlength="50" requried placeholder="firstname  lastname" class="form-control" value="{$prev_val['fullname']}"><br>
             <label class="form-check-label" for="address">Address (Optional)</label>
                 <input type="text" name="address_line1" maxlength="50"  placeholder="Address Line 1" class="form-control" value="{$prev_val['address_line1']}"><br>
-                <input type="text" name="address_line2" maxlength="250"  placeholder="Address Line 2" class="form-control" value="{$prev_val['address_line2']}"><br>
+                <input type="text" name="address_line2" maxlength="50"  placeholder="Address Line 2" class="form-control" value="{$prev_val['address_line2']}"><br>
                 <label class="form-check-label" for="address">City (Optional)</label>
                 <input type="text" name="city" maxlength="50"  placeholder="City" class="form-control" value="{$prev_val['city']}"><br>
                 <label class="form-check-label" for="province">Province (Optional)</label>
@@ -70,8 +70,8 @@ class registration
                 <input type="radio" name="lang" value="Other"  > Other <input name='other_lang' type="text" maxlength="25" value="{$prev_val['other_lang']}">
                 <legend>Connection Info (Requried)</legend>
                 <input class="form-control" type="email" name="email" requried maxlength="126" size="25" placeholder="Email" value="{$prev_val['email']}" ><br>
-                <input class="form-control" type="password" name="pw" requried maxlength="8"  placeholder="Password - must be (8 Char)" value="{$prev_val['pw']}"><br>
-                <input class="form-control" type="password" name="pw2" requried maxlength="8"  placeholder="repeat password" value="{$prev_val['pw2']}"><br>
+                <input class="form-control" type="password" name="pw" requried maxlength="8"  placeholder="Password - must be (8 Char)"><br>
+                <input class="form-control" type="password" name="pw2" requried maxlength="8"  placeholder="repeat password"><br>
                 <input type="checkbox"  name="spam_ok" value="1" checked> I accept to periodically receive  information about new products <br>
                 <input class="btn btn-primary" type="submit" value='Continue' >
         </form>
@@ -81,12 +81,12 @@ class registration
 
     public function RegisterFormVerify()
     {
-        $Users = [
-            ['id' => 0, 'email' => 'abc@test.com', 'pw' => '12345678'],
-            ['id' => 1, 'email' => 'def@test.com', 'pw' => '12345678'],
-            ['id' => 0, 'email' => 'abc@gmail.com', 'pw' => '11111111'],
-        ];
-
+        // $Users = [
+        //     ['id' => 0, 'email' => 'abc@test.com', 'pw' => '12345678'],
+        //     ['id' => 1, 'email' => 'def@test.com', 'pw' => '12345678'],
+        //     ['id' => 0, 'email' => 'abc@gmail.com', 'pw' => '11111111'],
+        // ];
+        $DB = new db_pdo();
         $err_msg = '';
 
         if (isset($_POST['fullname'])) {
@@ -102,7 +102,7 @@ class registration
         }
 
         if (isset($_POST['address_line2'])) {
-            $address_line1 = $_POST['address_line2'];
+            $address_line2 = $_POST['address_line2'];
         } else {
             $err_msg .= 'Error in Address Line 2 .reg.php  <br>';
         }
@@ -124,7 +124,7 @@ class registration
         }
 
         if (isset($_POST['lang'])) {
-            $postal_code = $_POST['lang'];
+            $lang = $_POST['lang'];
         } else {
             $err_msg .= 'Error in language .reg.php  <br>';
         }
@@ -135,11 +135,12 @@ class registration
             $err_msg .= 'Error in other_lang .reg.php  <br>';
         }
 
-        // if (isset($_POST['spam_ok'])) {
-        //     $spam_ok = $_POST['spam_ok'];
-        // } else {
-        //     $err_msg .= 'Error in spam_ok .reg.php  <br>';
-        // }
+        if (!isset($_POST['spam_ok'])) {
+            $_POST['spam_ok'] = 0;
+        // $spam = $_POST['spam_ok'];
+        } else {
+            $spam = $_POST['spam_ok'];
+        }
 
         if ($fullname == '') {
             $err_msg .= 'Please enter a fullname <br>';
@@ -171,12 +172,13 @@ class registration
         if (strlen($_POST['pw']) != 8) {
             $err_msg .= 'enter 8 digit password <br>';
         }
-
-        foreach ($Users as $key => $value) {
-            if ($email_input == $value['email']) {
-                $err_msg .= 'Email Already Exists!!!! Use different Email <br>';
-                break;
-            }
+        var_dump($email_input);
+        $r = 'SELECT email FROM users where email="'.$email_input.'"';
+        $record = $DB->querySelect($r);
+        // var_dump($record);
+        // var_dump($email_input);
+        if ($record == $email_input) {
+            $err_msg .= 'Email Already Exists!!!! Use different Email <br>';
         }
 
         if ($pw2_input != $pw_input) {
@@ -187,8 +189,11 @@ class registration
             //display form with err msg and previously entered data
             $this->RegisterFormDisplay($err_msg, $_POST);
         }
+        $DB->query("INSERT into users(fullname,address_line1,address_line2,city,province,postal_code,lang,other_lang,spam_ok,email,pw)
+        VALUES('$fullname','$address_line1','$address_line2','$city','$province','$postal_code','$lang','$other_lang',$spam,'$email_input','$pw_input')");
 
         $validPage = new web_page();
+        $validPage->title = 'Success';
         $validPage->content = '<h2>Added User:'.$email_input.' Successfully</h2>';
         $validPage->render();
     }

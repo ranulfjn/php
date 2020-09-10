@@ -40,10 +40,23 @@
             <li><a class="navdata" href="index.php">Home</a></li>
             <li><a class="navdata" href="index.php?op=110">Product List</a></li>
             <li><a class="navdata" href="index.php?op=111">Product Catalogue</a></li>
-            <li><a class="navdata" href="index.php?op=50">Error Logs</a></li>
-            <li><a class="navdata" href="index.php?op=1">Login</a></li>
             <li><a class="navdata" href="index.php?op=3">Registration</a></li>
+            <?php
+            if (isset($_SESSION['level'])) {
+                if ($_SESSION['level'] == 'employee') {
+                    echo' <li><a class="navdata" href="index.php?op=50">Error Logs</a></li>';
+                    echo' <li><a class="navdata" href="index.php?op=51">List Users</a></li>';
+                }
+            }
+            if (isset($_SESSION['user_name'])) {
+                echo"<li><a  href='index.php?op=5'>Logout</a></li>";
+                echo'<li style="color:white;padding:10px; position:absolute;right:40px;text-transform: uppercase;">'.$_SESSION['user_name'].'<li>';
+            } else {
+                echo'  <li><a class="navdata" href="index.php?op=1">Login</a></li>';
+            } ?>
+
         </ul>
+
     </nav>
     <main>
         <?= $this->content; ?>

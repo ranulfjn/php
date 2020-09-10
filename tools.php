@@ -44,7 +44,7 @@ function array_HTML_table($arrayName)
     return $r;
 }
 
-function array_HTML_Products($arrayProducts)
+function tableDisplay($arrayProducts)// display any table
 {
     $r = '';
     // $r .= '<style> td,th{
